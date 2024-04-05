@@ -44,7 +44,7 @@ class _SettingState extends State<Setting> {
                 );
               },
             ),
-            Expanded(child: SizedBox()), // Spacer to push "Sign Out" to the bottom
+            Expanded(child: SizedBox()),
             Center(
               child: ElevatedButton(
                 onPressed: () {

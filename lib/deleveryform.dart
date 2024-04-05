@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import 'DatabaseHelper.dart';
+
 class dForm extends StatefulWidget {
   @override
   _dFormState createState() => _dFormState();
@@ -114,20 +116,41 @@ class _dFormState extends State<dForm> {
             SizedBox(height: 20),
             _buildDateFormField(),
             SizedBox(height: 20),
+
             ElevatedButton(
-              onPressed: () {
-                // Submit form logic here
-                // Access form data using _nameController.text, _addressController.text, etc.
+              onPressed: () async {
+                FormData formData = FormData(
+                  name: _nameController.text,
+                  address: _addressController.text,
+                  phoneNumber: _phoneNumberController.text,
+                  email: _emailController.text,
+                  date: DateFormat('MM-dd-yyyy').format(_selectedDate),
+                );
+                int id = await DatabaseHelper.instance.insertForm(formData);
+                print('Form data inserted with id: $id');
+
+                // Print the details inserted into the form
+                print('Name: ${formData.name}');
+                print('Address: ${formData.address}');
+                print('Phone Number: ${formData.phoneNumber}');
+                print('Date: ${formData.date}');
+                print('Email: ${formData.email}');
+
+                // Show a confirmation dialog or navigate to another screen
               },
+              child: Text('Submit'), // Add the text "Submit" here
               style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white,
-                backgroundColor: Colors.orange,
+                foregroundColor: Colors.white, backgroundColor: Colors.orangeAccent, // Text color
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(10), // Border radius
                 ),
               ),
-              child: Text('Submit'),
             ),
+
+
+            // Button style and child widget remains the same
+
+
           ],
         ),
       ),
