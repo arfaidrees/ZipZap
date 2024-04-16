@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shipment/Employee.dart';
 import 'Business.dart';
 import 'Individual.dart';
 import 'home.dart';
@@ -27,79 +28,96 @@ class AccountType extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/box.jpg'),
-            fit: BoxFit.cover,
+            image: AssetImage('assets/box.jpg'), // Replace 'background_image.jpg' with your image asset
+            fit: BoxFit.cover, // Adjust the image to cover the entire container
           ),
         ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // Title
-              Text(
-                'Choose Your Account Type',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white, // Text color
-                ),
-              ),
-              SizedBox(height: 10),
-              // Description
-              Text(
-                'What type of delivery do you need?',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.grey[800],
-                ),
-              ),
-              SizedBox(height: 20),
-              // Individual Button
-              buildAccountTypeButton(
-                icon: Icons.account_box_rounded,
-                label: 'Individual',
-                description: 'For both basic personal and small businesses use',
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Individual()),
-                  );
-                },
-              ),
-              SizedBox(height: 20),
-              // Business Button
-              buildAccountTypeButton(
-                icon: Icons.business_center_rounded,
-                label: 'Business',
-                description: 'SignUp for exclusive business features and submit your enquiry',
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Business()),
-                  );
-                },
-              ),
-              SizedBox(height: 20),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => LoginPage()),
-                  );
-                },
-                child: Text(
-                  'Already have an account?',
+        child: SingleChildScrollView( // Added SingleChildScrollView here
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Title
+                Text(
+                  'Choose Your Account Type',
                   style: TextStyle(
-                    color: Colors.blue,
-                    fontSize: 16,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white, // Text color
                   ),
                 ),
-              ),
-            ],
+                SizedBox(height: 10),
+                // Description
+                Text(
+                  'What type of delivery do you need?',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.grey[800], // Text color
+                  ),
+                ),
+                SizedBox(height: 20),
+                // Individual Button
+                buildAccountTypeButton(
+                  icon:Icons.account_circle,
+                  label: 'Employ',
+                  description: 'For company employ use only.####### ',
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => empos()),
+                    );
+                  },
+                ),
+                SizedBox(height: 20),
+                // Individual Button
+                buildAccountTypeButton(
+                  icon: Icons.account_box_rounded,
+                  label: 'Individual',
+                  description: 'For both basic personal and small businesses use',
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Individual()),
+                    );
+                  },
+                ),
+
+                SizedBox(height: 20),
+                // Business Button
+                buildAccountTypeButton(
+                  icon: Icons.business_center_rounded,
+                  label: 'Business',
+                  description: 'SignUp for exclusive business features and submit your enquiry',
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Business()),
+                    );
+                    // Add your onPressed logic for the business button
+                  },
+                ),
+                SizedBox(height: 20),
+                // Already have an account Button
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginPage()),
+                    );
+                  },
+                  child: Text(
+                    'Already have an account?',
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-    );
+      ),);
   }
 
   Widget buildAccountTypeButton({

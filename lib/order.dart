@@ -10,31 +10,28 @@ class _OrderState extends State<Order> {
 
   Widget _buildTaskContainer(String option) {
     if (option == 'Ongoing') {
+      // Return white container for ongoing tasks
       return Container(
-        color: Colors.white,
+        color: Colors.grey,
         child: Center(
           child: Text(
             'Ongoing orders',
             style: TextStyle(
               fontSize: 20,
-              color: _selectedOption == 'Ongoing' ? Colors.orange : Colors.black,
+              color: Colors.black,
             ),
           ),
         ),
       );
     } else {
       return Container(
-        color: option == 'Completed'
-            ? Colors.white
-            : option == 'Canceled'
-            ? Colors.white
-            : Colors.orange,
+        color: option == 'Completed' ? Colors.pinkAccent : Colors.orange,
         child: Center(
           child: Text(
             '$option orders',
             style: TextStyle(
               fontSize: 20,
-              color: _selectedOption == option ? Colors.orange : Colors.white,
+              color: Colors.white,
             ),
           ),
         ),
@@ -46,14 +43,13 @@ class _OrderState extends State<Order> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
         title: Text('Orders'),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
-            color: Colors.white,
+            color: Colors.grey[200],
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -65,20 +61,10 @@ class _OrderState extends State<Order> {
                   },
                   child: Container(
                     padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                          color: _selectedOption == 'Ongoing' ? Colors.orange : Colors.transparent,
-                          width: 2,
-                        ),
-                      ),
-                    ),
-                    child: Text(
-                      'Ongoing',
-                      style: TextStyle(
-                        color: _selectedOption == 'Ongoing' ? Colors.orange : Colors.grey,
-                      ),
-                    ),
+                    color: _selectedOption == 'Ongoing'
+                        ? Colors.blue.withOpacity(0.5)
+                        : null,
+                    child: Text('Ongoing'),
                   ),
                 ),
                 GestureDetector(
@@ -89,20 +75,10 @@ class _OrderState extends State<Order> {
                   },
                   child: Container(
                     padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                          color: _selectedOption == 'Completed' ? Colors.orange : Colors.transparent,
-                          width: 2,
-                        ),
-                      ),
-                    ),
-                    child: Text(
-                      'Completed',
-                      style: TextStyle(
-                        color: _selectedOption == 'Completed' ? Colors.orange : Colors.grey,
-                      ),
-                    ),
+                    color: _selectedOption == 'Completed'
+                        ? Colors.green.withOpacity(0.5)
+                        : null,
+                    child: Text('Completed'),
                   ),
                 ),
                 GestureDetector(
@@ -113,20 +89,10 @@ class _OrderState extends State<Order> {
                   },
                   child: Container(
                     padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                          color: _selectedOption == 'Canceled' ? Colors.orange : Colors.transparent,
-                          width: 2,
-                        ),
-                      ),
-                    ),
-                    child: Text(
-                      'Canceled',
-                      style: TextStyle(
-                        color: _selectedOption == 'Canceled' ? Colors.orange : Colors.grey,
-                      ),
-                    ),
+                    color: _selectedOption == 'Canceled'
+                        ? Colors.red.withOpacity(0.5)
+                        : null,
+                    child: Text('Canceled'),
                   ),
                 ),
               ],
